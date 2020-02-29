@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-base64@2.5.2/base64.min.js"></script>
     <script src="https://bossanova.uk/jexcel/v3/jexcel.js"></script>
     <script src="https://bossanova.uk/jsuites/v2/jsuites.js"></script>
 
@@ -17,61 +18,28 @@
   </head>
   <body>
     <?php
-      if ($_POST){
-        if (!empty($_POST['csv'])){
-          $fp = fopen('kurse.csv', 'w');
 
-          if (!empty($_POST['headers'])){
-            $headers = json_decode($_POST['headers']);
-            fputcsv($fp, str_getcsv($headers,","));
-          }
-
-          $csv = json_decode($_POST['csv']);
-          foreach ($csv as $fields) {
-            fputcsv($fp, $fields);
-          }
-
-          fclose($fp);
-        }
-      }
-
+      include('src/php/includes/class.cntnd_spreadsheet.php');
       // READ CSV
       //$path = "/home/httpd/vhosts/interunido.ch/httpdocs/interunido/upload/kurse/";
       $path = "";
       $filename = "kurse.csv";
+      $spreadsheet = new CntndSpreadsheet($filename, $path);
 
-      $file = file_get_contents($path.$filename, FILE_USE_INCLUDE_PATH);
-
-      $csv = str_getcsv($file,"\n");
-
-      $headers = "";
-      $data = "";
-      $i=0;
-      foreach ($csv as $row) {
-        if ($i==0){
-          $headers .= "[";
-          $keys = str_getcsv($row,",");
-          foreach ($keys as $value) {
-            $headers .= "{ title: '".$value."' },";
-          }
-          $headers .= "]";
-        }
-        else {
-          $data .= "[";
-          $keys = str_getcsv($row,",");
-          foreach ($keys as $value) {
-            $data .= "'".$value."',";
-          }
-          $data .= "],";
-        }
-        $i++;
+      if ($_POST){
+        //$stored = $spreadsheet->store($_POST);
+      	$base64 = base64_decode($_POST['cntnd_simple_spreadsheet-csv']);
+      	$csv = json_decode($base64);
+      	var_dump($csv);
       }
+
+      $data = $spreadsheet->load();
     ?>
 
     <form method="post" id="cntnd_spreadsheet" name="cntnd_spreadsheet">
-      <input type="text" name="csv" id="csv" />
-      <input type="text" name="headers" id="headers" />
-      <p><button id='download'>Export my spreadsheet as CSV</button> <a href="#" id="test">test</a></p>
+      <input type="text" name="cntnd_simple_spreadsheet-csv" id="cntnd_simple_spreadsheet-csv" />
+      <input type="text" name="cntnd_simple_spreadsheet-headers" id="cntnd_simple_spreadsheet-headers" />
+      <p><button id='download'>SAVE</button> <a href="#" id="test">test</a></p>
       <div id="spreadsheet"></div>
     </form>
     <script type="text/javascript">
@@ -107,8 +75,8 @@
         noCellsSelected:'Keine Zellen ausgewählt',
       };
 
-      var data = [<?= $data ?>];
-      var headers = <?= $headers ?>;
+      var data = [<?= $data['data'] ?>];
+      var headers = <?= $data['headers'] ?>;
       var mySpreadsheet = $('#spreadsheet').jexcel({
           data: data,
           columns: headers,
@@ -121,15 +89,15 @@
       $('#test').click(function(){
         var data = mySpreadsheet.getData();
         var headers = mySpreadsheet.getHeaders();
-        $('#csv').val(JSON.stringify(data));
-        $('#headers').val(JSON.stringify(headers));
+        $('#cntnd_simple_spreadsheet-csv').val(Base64.encode(JSON.stringify(data)));
+        $('#cntnd_simple_spreadsheet-headers').val(Base64.encode(JSON.stringify(headers)));
       });
 
       $('#cntnd_spreadsheet').submit(function() {
         var data = mySpreadsheet.getData();
         var headers = mySpreadsheet.getHeaders();
-        $('#csv').val(JSON.stringify(data));
-        $('#headers').val(JSON.stringify(headers));
+        $('#cntnd_simple_spreadsheet-csv').val(Base64.encode(JSON.stringify(data)));
+        $('#cntnd_simple_spreadsheet-headers').val(Base64.encode(JSON.stringify(headers)));
         return true;
       });
     </script>

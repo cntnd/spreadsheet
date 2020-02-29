@@ -15,7 +15,7 @@ cInclude('module', 'includes/class.cntnd_spreadsheet.php');
 
 // other/vars
 $path = "/home/httpd/vhosts/interunido.ch/httpdocs/interunido/upload/kurse/";
-$filename = "kurse.csv";
+$filename = "kurse_test.csv";
 
 $spreadsheet = new CntndSpreadsheet($filename, $path);
 
@@ -77,8 +77,8 @@ if ($editmode){
     $('#cntnd_simple_spreadsheet').submit(function() {
       var data = mySpreadsheet.getData();
       var headers = mySpreadsheet.getHeaders();
-      $('#cntnd_simple_spreadsheet-csv').val(JSON.stringify(data));
-      $('#cntnd_simple_spreadsheet-headers').val(JSON.stringify(headers));
+      $('#cntnd_simple_spreadsheet-csv').val(Base64.encode(JSON.stringify(data)));
+      $('#cntnd_simple_spreadsheet-headers').val(Base64.encode(JSON.stringify(headers)));
       return true;
     });
   });
