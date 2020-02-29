@@ -19,7 +19,7 @@
     <?php
       if ($_POST){
         if (!empty($_POST['csv'])){
-          $fp = fopen('test.csv', 'w');
+          $fp = fopen('kurse.csv', 'w');
 
           if (!empty($_POST['headers'])){
             $headers = json_decode($_POST['headers']);
@@ -28,7 +28,7 @@
 
           $csv = json_decode($_POST['csv']);
           foreach ($csv as $fields) {
-              fputcsv($fp, $fields);
+            fputcsv($fp, $fields);
           }
 
           fclose($fp);
@@ -107,33 +107,9 @@
         noCellsSelected:'Keine Zellen ausgewählt',
       };
 
-      var data = [<?= $data ?>]; // data:data,
+      var data = [<?= $data ?>];
       var headers = <?= $headers ?>;
-
-      /*
-      nestedHeaders:[
-              [
-                  {
-                      title: 'Supermarket information',
-                      colspan: '3',
-                  },
-              ],
-              [
-                  {
-                      title: 'Location',
-                      colspan: '1',
-                  },
-                  {
-                      title: ' Other Information',
-                      colspan: '2'
-                  }
-              ],
-          ],
-          csv:'kurse.csv',
-          csvHeaders:true,
-      */
-
-      var mySpreadsheet = jexcel(document.getElementById('spreadsheet'), {
+      var mySpreadsheet = $('#spreadsheet').jexcel({
           data: data,
           columns: headers,
           defaultColWidth:120,

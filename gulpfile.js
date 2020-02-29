@@ -27,7 +27,7 @@ gulp.task('sass', function() {
 
 gulp.task('zip', function() {
   return gulp.src(['src/**/*','!src/scss*'])
-  		.pipe(zip('cntnd_spreadsheet.zip'))
+  		.pipe(zip('cntnd_simple_spreadsheet.zip'))
   		.pipe(gulp.dest('dist/'));
 });
 
