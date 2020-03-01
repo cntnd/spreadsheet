@@ -1,5 +1,5 @@
 <?php
-// cntnd_simple_spreadsheet_output
+// cntnd_spreadsheet_output
 
 // assert framework initialization
 defined('CON_FRAMEWORK') || die('Illegal call: Missing framework initialization - request aborted.');
@@ -24,7 +24,7 @@ $data = $spreadsheet->load();
 
 // includes #2
 if ($editmode){
-  cInclude('module', 'includes/script.cntnd_simple_spreadsheet_output.php');
+  cInclude('module', 'includes/script.cntnd_spreadsheet_output.php');
 
 	echo '<div class="content_box"><label class="content_type_label">'.mi18n("MODULE").'</label>';
   ?>
@@ -71,20 +71,20 @@ if ($editmode){
         text:texts,
         columnSorting:false
     });
-    $('#cntnd_simple_spreadsheet').submit(function() {
+    $('#cntnd_spreadsheet').submit(function() {
       var data = mySpreadsheet.getData();
       var headers = mySpreadsheet.getHeaders();
-      $('#cntnd_simple_spreadsheet-csv').val(Base64.encode(JSON.stringify(data)));
-      $('#cntnd_simple_spreadsheet-headers').val(Base64.encode(JSON.stringify(headers)));
+      $('#cntnd_spreadsheet-csv').val(Base64.encode(JSON.stringify(data)));
+      $('#cntnd_spreadsheet-headers').val(Base64.encode(JSON.stringify(headers)));
       return true;
     });
   });
   </script>
-  <form id="cntnd_simple_spreadsheet" name="cntnd_simple_spreadsheet" method="post">
+  <form id="cntnd_spreadsheet" name="cntnd_spreadsheet" method="post">
     <p><button class="btn btn-primary" type="submit"><?= mi18n("SAVE") ?></button></p>
     <div id="spreadsheet"></div>
-    <input type="hidden" name="cntnd_simple_spreadsheet-csv" id="cntnd_simple_spreadsheet-csv" />
-    <input type="hidden" name="cntnd_simple_spreadsheet-headers" id="cntnd_simple_spreadsheet-headers" />
+    <input type="hidden" name="cntnd_spreadsheet-csv" id="cntnd_spreadsheet-csv" />
+    <input type="hidden" name="cntnd_spreadsheet-headers" id="cntnd_spreadsheet-headers" />
   </form>
 <?php
 }

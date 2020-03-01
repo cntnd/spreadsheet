@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module>
-<name>cntnd_simple_spreadsheet</name>
+<name>cntnd_spreadsheet</name>
 <description>
-cntnd_simple_spreadsheet
-Simple Spreadsheet
+cntnd_spreadsheet
+Spreadsheet
 
 Autor Thomas D Ascoli, thomas@dasco.li
 
 Version 1.0.0
 </description>
 <type/>
-<alias>cntnd_simple_spreadsheet</alias>
+<alias>cntnd_spreadsheet</alias>
 </module>

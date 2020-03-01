@@ -1,7 +1,7 @@
 <?php
 
 /**
- * cntnd_simple_spreadsheet Class
+ * cntnd_spreadsheet Class
  */
 class CntndSpreadsheet {
 
@@ -12,16 +12,16 @@ class CntndSpreadsheet {
   }
 
   public function store($post){
-    if ($post['cntnd_simple_spreadsheet-csv']){
+    if ($post['cntnd_spreadsheet-csv']){
       $fp = fopen($this->file, 'w');
 
-      if (!empty($post['cntnd_simple_spreadsheet-headers'])){
-        $b64h = base64_decode($_POST['cntnd_simple_spreadsheet-headers']);
+      if (!empty($post['cntnd_spreadsheet-headers'])){
+        $b64h = base64_decode($_POST['cntnd_spreadsheet-headers']);
         $headers = json_decode($b64h);
         fputcsv($fp, str_getcsv($headers,","));
       }
 
-      $b64c = base64_decode($_POST['cntnd_simple_spreadsheet-csv']);
+      $b64c = base64_decode($_POST['cntnd_spreadsheet-csv']);
       $csv = json_decode($b64c);
       foreach ($csv as $fields) {
           fputcsv($fp, $fields);

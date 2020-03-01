@@ -1,7 +1,7 @@
 {
-  "name": "cntnd_simple_spreadsheet",
+  "name": "cntnd_spreadsheet",
   "version": "1.0.0",
-  "description": "Simple Spreadsheet",
+  "description": "Spreadsheet",
   "devDependencies": {
     "del": "^5.1.0",
     "gulp": "^4.0.2",

@@ -10,3 +10,4 @@
 * `$lang = cRegistry::getLanguageId();`  
 * `mi18n("SELECT_ARTICLE")`
 * `buildArticleSelect("CMS_VAR[2]", $oModule->cmsCatID, $oModule->cmsArtID);`
+* https://docs.contenido.org/display/CONDEVE/%24cfgClient

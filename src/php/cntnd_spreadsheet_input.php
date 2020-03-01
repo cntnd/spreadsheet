@@ -1,5 +1,5 @@
 ?><?php
-// cntnd_simple_spreadsheet_input
+// cntnd_spreadsheet_input
 
 // input/vars
 $filename = "CMS_VALUE[1]";
