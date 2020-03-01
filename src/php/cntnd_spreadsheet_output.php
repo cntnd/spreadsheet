@@ -69,7 +69,26 @@ if ($editmode){
         defaultColWidth:120,
         defaultColAlign: 'left',
         text:texts,
-        columnSorting:false
+        columnSorting:false,
+        toolbar:[{
+            type: 'i',
+            content: 'save',
+            onclick: function () {
+                $('#cntnd_spreadsheet').submit();
+            }
+        },{
+            type: 'i',
+            content: 'undo',
+            onclick: function() {
+                mySpreadsheet.undo();
+            }
+        },{
+            type: 'i',
+            content: 'redo',
+            onclick: function() {
+                mySpreadsheet.redo();
+            }
+        }]
     });
     $('#cntnd_spreadsheet').submit(function() {
       var data = mySpreadsheet.getData();
@@ -81,7 +100,6 @@ if ($editmode){
   });
   </script>
   <form id="cntnd_spreadsheet" name="cntnd_spreadsheet" method="post">
-    <p><button class="btn btn-primary" type="submit"><?= mi18n("SAVE") ?></button></p>
     <div id="spreadsheet"></div>
     <input type="hidden" name="cntnd_spreadsheet-csv" id="cntnd_spreadsheet-csv" />
     <input type="hidden" name="cntnd_spreadsheet-headers" id="cntnd_spreadsheet-headers" />
