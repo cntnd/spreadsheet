@@ -15,6 +15,7 @@
 
     <link rel="stylesheet" href="https://bossanova.uk/jsuites/v2/jsuites.css" type="text/css" />
     <link rel="stylesheet" href="https://bossanova.uk/jexcel/v3/jexcel.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Material+Icons" />
   </head>
   <body>
     <?php
@@ -83,7 +84,28 @@
           defaultColWidth:120,
           defaultColAlign: 'left',
           text:texts,
-          columnSorting:false
+          columnSorting:false,
+          toolbar:[{
+                      type: 'i',
+                      content: 'save',
+                      onclick: function () {
+                          $('#cntnd_spreadsheet').submit();
+                      }
+                  },
+                  {
+                      type: 'i',
+                      content: 'undo',
+                      onclick: function() {
+                          mySpreadsheet.undo();
+                      }
+                  },
+                  {
+                      type: 'i',
+                      content: 'redo',
+                      onclick: function() {
+                          mySpreadsheet.redo();
+                      }
+                  }]
       });
 
       $('#test').click(function(){
