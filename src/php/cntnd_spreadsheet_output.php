@@ -66,10 +66,10 @@ if ($editmode){
     var mySpreadsheet = $('#spreadsheet').jexcel({
         data: data,
         columns: headers,
-        defaultColWidth:120,
+        defaultColWidth: 120,
         defaultColAlign: 'left',
-        text:texts,
-        columnSorting:false,
+        text: texts,
+        columnSorting: false,
         toolbar:[{
             type: 'i',
             content: 'save',
