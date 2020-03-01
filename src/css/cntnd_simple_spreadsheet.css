@@ -1,1 +1,1 @@
-@import url(https://cdn.jsdelivr.net/gh/cntnd/core_style@0.1.0/dist/core_style.css);.content_box{border:1px solid silver}.content_type_label{background:silver}.hide{display:none!important}.show{display:block!important}
+@import url(https://cdn.jsdelivr.net/gh/cntnd/core_style@0.1.0/dist/core_style.css);@import url(https://rsms.me/inter/inter.css);.content_box{border:1px solid silver}.content_type_label{background:silver}.hide{display:none!important}.show{display:block!important}.content_box,.content_box td,.content_box th{font-family:Inter!important}

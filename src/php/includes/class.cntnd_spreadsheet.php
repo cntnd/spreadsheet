@@ -6,16 +6,14 @@
 class CntndSpreadsheet {
 
   private $file;
-  private $path;
 
-  function __construct($file, $path) {
+  function __construct($file) {
     $this->file = $file;
-    $this->path = $path;
   }
 
   public function store($post){
     if ($post['cntnd_simple_spreadsheet-csv']){
-      $fp = fopen($this->filePath(), 'w');
+      $fp = fopen($this->file, 'w');
 
       if (!empty($post['cntnd_simple_spreadsheet-headers'])){
         $b64h = base64_decode($_POST['cntnd_simple_spreadsheet-headers']);
@@ -37,7 +35,7 @@ class CntndSpreadsheet {
   }
 
   public function load(){
-    $file = file_get_contents($this->filePath(), FILE_USE_INCLUDE_PATH);
+    $file = file_get_contents($this->file, FILE_USE_INCLUDE_PATH);
 
     $csv = str_getcsv($file,"\n");
 
@@ -65,10 +63,6 @@ class CntndSpreadsheet {
     }
 
     return array('headers' => $headers, 'data' => $data);
-  }
-
-  private function filePath(){
-    return $this->path.$this->file;
   }
 }
 ?>

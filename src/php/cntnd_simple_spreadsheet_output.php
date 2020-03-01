@@ -1,5 +1,5 @@
 <?php
-// cntnd_core_output
+// cntnd_simple_spreadsheet_output
 
 // assert framework initialization
 defined('CON_FRAMEWORK') || die('Illegal call: Missing framework initialization - request aborted.');
@@ -8,16 +8,13 @@ defined('CON_FRAMEWORK') || die('Illegal call: Missing framework initialization 
 $editmode = cRegistry::isBackendEditMode();
 
 // input/vars
-// todo
+$filename = "CMS_VALUE[1]";
 
 // includes #1
 cInclude('module', 'includes/class.cntnd_spreadsheet.php');
 
 // other/vars
-$path = "/home/httpd/vhosts/interunido.ch/httpdocs/interunido/upload/kurse/";
-$filename = "kurse_test.csv";
-
-$spreadsheet = new CntndSpreadsheet($filename, $path);
+$spreadsheet = new CntndSpreadsheet($filename);
 
 if ($_POST){
   $stored = $spreadsheet->store($_POST);

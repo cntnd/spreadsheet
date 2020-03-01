@@ -1,4 +1,6 @@
 MODULE=Spreadsheet
+LABEL_FILE=CSV-Datei
+SELECT_CHOOSE=-bitte wählen-
 SAVE=Speichern
 noRecordsFound=Keine Einträge gefunden
 showingPage=Seite {0} von {1}
