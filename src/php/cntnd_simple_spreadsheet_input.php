@@ -3,6 +3,13 @@
 
 // input/vars
 $filename = "CMS_VALUE[1]";
+$separator = "CMS_VALUE[2]";
+if (empty($separator)){
+  $separator=',';
+}
+
+// includes
+cInclude('module', 'includes/style.cntnd_simple_spreadsheet_input.php');
 
 // data load
 $db = new cDb;
@@ -41,6 +48,10 @@ while ($db->nextRecord()) {
         }
       ?>
     </select>
+  </div>
+  <div class="form-group">
+    <label for="filename"><?= mi18n("LABEL_SEPARATOR") ?></label>
+    <input type="text" maxlength="1" name="CMS_VAR[2]" value="<?= $separator ?>"/>
   </div>
 </div>
 <?php

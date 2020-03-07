@@ -9,12 +9,13 @@ $editmode = cRegistry::isBackendEditMode();
 
 // input/vars
 $filename = "CMS_VALUE[1]";
+$separator = "CMS_VALUE[2]";
 
 // includes #1
 cInclude('module', 'includes/class.cntnd_spreadsheet.php');
 
 // other/vars
-$spreadsheet = new CntndSpreadsheet($filename);
+$spreadsheet = new CntndSpreadsheet($filename, $separator);
 
 if ($_POST){
   $stored = $spreadsheet->store($_POST);

@@ -1,4 +1,5 @@
 MODULE=Spreadsheet
 LABEL_FILE=CSV-Datei
 SELECT_CHOOSE=-bitte wählen-
+LABEL_SEPARATOR=CSV Trennzeichen
 SAVE=Speichern
