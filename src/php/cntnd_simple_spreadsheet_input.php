@@ -7,6 +7,7 @@ $separator = "CMS_VALUE[2]";
 if (empty($separator)){
   $separator=',';
 }
+$files = array();
 
 // includes
 cInclude('module', 'includes/style.cntnd_simple_spreadsheet_input.php');
@@ -19,18 +20,15 @@ $uploadDir = $cfgClient[$client]['upl']['path'];
 
 // medien, images, folders
 $cfg = cRegistry::getConfig();
-$mediatypes=array('csv');
 
-$sql = "SELECT * FROM :table WHERE idclient=:idclient ORDER BY dirname ASC, filename ASC";
+$sql = "SELECT * FROM :table WHERE idclient=:idclient AND filetype IN ('csv') ORDER BY dirname ASC, filename ASC";
 $values = array(
     'table' => $cfg['tab']['upl'],
     'idclient' => cSecurity::toInteger($client)
 );
 $db->query($sql, $values);
 while ($db->nextRecord()) {
-  if (in_array($db->f('filetype'),$mediatypes)){
     $files[$db->f('idupl')] = array('filename' => $db->f('dirname').$db->f('filename'), 'filepath' => $uploadDir.$db->f('dirname').$db->f('filename'));
-  }
 }
 ?>
 <div class="form-vertical">
