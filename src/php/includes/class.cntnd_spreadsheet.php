@@ -6,9 +6,11 @@
 class CntndSpreadsheet {
 
   private $file;
+  private $separator;
 
-  function __construct($file) {
+  function __construct($file, $separator=',') {
     $this->file = $file;
+    $this->separator = $separator;
   }
 
   public function store($post){
@@ -18,7 +20,7 @@ class CntndSpreadsheet {
       if (!empty($post['cntnd_spreadsheet-headers'])){
         $b64h = base64_decode($_POST['cntnd_spreadsheet-headers']);
         $headers = json_decode($b64h);
-        fputcsv($fp, str_getcsv($headers,","));
+        fputcsv($fp, str_getcsv($headers,$this->separator));
       }
 
       $b64c = base64_decode($_POST['cntnd_spreadsheet-csv']);
@@ -45,7 +47,7 @@ class CntndSpreadsheet {
     foreach ($csv as $row) {
       if ($i==0){
         $headers .= "[";
-        $keys = str_getcsv($row,",");
+        $keys = str_getcsv($row,$this->separator);
         foreach ($keys as $value) {
           $headers .= "{ title: '".$value."' },";
         }
@@ -53,7 +55,7 @@ class CntndSpreadsheet {
       }
       else {
         $data .= "[";
-        $keys = str_getcsv($row,",");
+        $keys = str_getcsv($row,$this->separator);
         foreach ($keys as $value) {
           $data .= "'".$value."',";
         }
