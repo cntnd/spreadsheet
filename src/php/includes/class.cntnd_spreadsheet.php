@@ -20,13 +20,13 @@ class CntndSpreadsheet {
       if (!empty($post['cntnd_spreadsheet-headers'])){
         $b64h = base64_decode($_POST['cntnd_spreadsheet-headers']);
         $headers = json_decode($b64h);
-        fputcsv($fp, str_getcsv($headers,$this->separator));
+        fputcsv($fp, str_getcsv($headers,','),$this->separator));
       }
 
       $b64c = base64_decode($_POST['cntnd_spreadsheet-csv']);
       $csv = json_decode($b64c);
       foreach ($csv as $fields) {
-          fputcsv($fp, $fields);
+          fputcsv($fp, $fields, $this->separator);
       }
 
       fclose($fp);
@@ -35,7 +35,7 @@ class CntndSpreadsheet {
     }
     return false;
   }
-
+  
   public function load(){
     $file = file_get_contents($this->file, FILE_USE_INCLUDE_PATH);
 
