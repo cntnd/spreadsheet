@@ -75,7 +75,7 @@ if ($editmode){
             type: 'i',
             content: 'save',
             onclick: function () {
-                $('#cntnd_spreadsheet').submit();
+                $('#cntnd_simple_spreadsheet').submit();
             }
         },{
             type: 'i',
