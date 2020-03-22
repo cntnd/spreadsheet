@@ -26,6 +26,7 @@ $data = $spreadsheet->load();
 // includes #2
 if ($editmode){
   cInclude('module', 'includes/script.cntnd_simple_spreadsheet_output.php');
+  cInclude('module', 'includes/style.cntnd_simple_spreadsheet_output.php');
 
 	echo '<div class="content_box"><label class="content_type_label">'.mi18n("MODULE").'</label>';
   ?>
@@ -70,26 +71,7 @@ if ($editmode){
         defaultColWidth:120,
         defaultColAlign: 'left',
         text:texts,
-        columnSorting:false,
-        toolbar:[{
-            type: 'i',
-            content: 'save',
-            onclick: function () {
-                $('#cntnd_simple_spreadsheet').submit();
-            }
-        },{
-            type: 'i',
-            content: 'undo',
-            onclick: function() {
-                mySpreadsheet.undo();
-            }
-        },{
-            type: 'i',
-            content: 'redo',
-            onclick: function() {
-                mySpreadsheet.redo();
-            }
-        }]
+        columnSorting:false]
     });
     $('#cntnd_simple_spreadsheet').submit(function() {
       var data = mySpreadsheet.getData();
@@ -101,6 +83,7 @@ if ($editmode){
   });
   </script>
   <form id="cntnd_simple_spreadsheet" name="cntnd_simple_spreadsheet" method="post">
+	   <p><button type="submit" class="btn btn-primary">Speichern</button></p>
     <div id="spreadsheet"></div>
     <input type="hidden" name="cntnd_simple_spreadsheet-csv" id="cntnd_simple_spreadsheet-csv" />
     <input type="hidden" name="cntnd_simple_spreadsheet-headers" id="cntnd_simple_spreadsheet-headers" />
