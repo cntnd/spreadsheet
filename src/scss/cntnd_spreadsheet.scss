@@ -1,5 +1,5 @@
 /* cntnd_booking */
-@import url('https://cdn.jsdelivr.net/gh/cntnd/core_style@0.1.0/dist/core_style.css');
+@import url('https://cdn.jsdelivr.net/gh/cntnd/core_style@0.1.1/dist/core_style.css');
 @import url('https://rsms.me/inter/inter.css');
 @import '_vars.scss';
 
@@ -23,4 +23,32 @@
 .content_box td,
 .content_box th, {
 	font-family: Inter !important;
+}
+
+/* FRONTEND */
+.results {
+	padding: 0;
+}
+
+.result {
+	list-style-type: none;
+	margin-bottom: 10px;
+
+	&.result--first-team {
+		font-size: 1.25em;
+	}
+
+	> span {
+		display: block;
+	}
+
+	.result__team {
+		font-weight: bold;
+	}
+}
+
+.result__game {
+	.result__game-result {
+		float: right;
+	}
 }

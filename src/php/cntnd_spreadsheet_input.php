@@ -10,7 +10,7 @@ if (empty($separator)){
 $files = array();
 
 // includes
-cInclude('module', 'includes/style.cntnd_simple_spreadsheet_input.php');
+cInclude('module', 'includes/style.cntnd_spreadsheet_input.php');
 
 // data load
 $db = new cDb;
@@ -32,24 +32,32 @@ while ($db->nextRecord()) {
 }
 ?>
 <div class="form-vertical">
-  <div class="form-group">
-    <label for="filename"><?= mi18n("LABEL_FILE") ?></label>
-    <select name="CMS_VAR[1]" id="filename" size="1" onchange="this.form.submit()">
-      <option value="false"><?= mi18n("SELECT_CHOOSE") ?></option>
-      <?php
-        foreach ($files as $value) {
-          $selected='';
-          if ($filename==$value['filepath']){
-            $selected='selected="selected"';
-          }
-          echo '<option value="'.$value['filepath'].'" '.$selected.'>'.$value['filename'].'</option>';
-        }
-      ?>
-    </select>
-  </div>
-  <div class="form-group">
-    <label for="filename"><?= mi18n("LABEL_SEPARATOR") ?></label>
-    <input type="text" maxlength="1" name="CMS_VAR[2]" value="<?= $separator ?>"/>
-  </div>
+    <div class="form-group">
+        <div class="form-check form-check-inline">
+            <input id="activate_module" class="form-check-input" type="checkbox" name="CMS_VAR[3]" value="true" <?php if("CMS_VALUE[3]"=='true'){ echo 'checked'; } ?> />
+            <label for="activate_module" class="form-check-label"><?= mi18n("ACTIVATE_MODULE") ?></label>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="filename"><?= mi18n("LABEL_FILE") ?></label>
+        <select name="CMS_VAR[1]" id="filename" size="1" onchange="this.form.submit()">
+            <option value="false"><?= mi18n("SELECT_CHOOSE") ?></option>
+            <?php
+            foreach ($files as $value) {
+                $selected='';
+                if ($filename==$value['filepath']){
+                    $selected='selected="selected"';
+                }
+                echo '<option value="'.$value['filepath'].'" '.$selected.'>'.$value['filename'].'</option>';
+            }
+            ?>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="filename"><?= mi18n("LABEL_SEPARATOR") ?></label>
+        <input type="text" maxlength="1" name="CMS_VAR[2]" value="<?= $separator ?>"/>
+    </div>
 </div>
 <?php

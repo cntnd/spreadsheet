@@ -2,6 +2,7 @@ MODULE=Spreadsheet
 LABEL_FILE=CSV-Datei
 SELECT_CHOOSE=-bitte wählen-
 LABEL_SEPARATOR=CSV Trennzeichen
+ACTIVATE_MODULE=Modul aktivieren
 SAVE=Speichern
 noRecordsFound=Keine Einträge gefunden
 showingPage=Seite {0} von {1}
