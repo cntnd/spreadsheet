@@ -1,0 +1,8 @@
+<li class="result">
+    <span class="result__team">{$row.Bezeichnung}</span>
+    <span class="result__game">
+        {if $row.SpielTyp neq 'Meisterschaft'}<span class="result__game-type"><small>{$row.SpielTyp}</small></span><br />{/if}
+        <span class="result__game-teams">{$row.TeamnameA} – {$row.TeamnameB}</span>
+        <span class="result__game-result">{$row.Resultat}</span>
+    </span>
+</li>

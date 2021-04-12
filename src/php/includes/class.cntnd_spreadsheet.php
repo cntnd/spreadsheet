@@ -93,26 +93,6 @@ class CntndSpreadsheet {
     $csv    = array();
     foreach($rows as $row) {
       $data = array_combine($header, $row);
-
-      $TeamA = $data["TeamnameA"];
-      $TeamB = $data["TeamnameB"];
-      if ($data["VereinsnummerA"] == '10330') {
-        $TeamA = $data["Bezeichnung"];
-      }
-      if ($data["VereinsnummerB"] == '10330') {
-        $TeamB = $data["Bezeichnung"];
-      }
-      $data['TeamA']=$TeamA;
-      $data['TeamB']=$TeamB;
-
-      $SpielTyp = "";
-      if ($data['SpielType'] == "Trainingsspiele") {
-        $SpielTyp = "*";
-      } else if ($data['SpielType'] == "Cup") {
-        $SpielTyp = "(C)";
-      }
-      $data['data_spiel_typ']=$SpielTyp;
-
       $csv[] = $data;
     }
     return $csv;

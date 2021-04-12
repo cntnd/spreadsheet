@@ -111,26 +111,9 @@ if ($editmode){
 else {
     $data = $spreadsheet->spreadsheet();
 
-    $aktive = array();
-    $junioren = array();
-    $kifu = array();
-    foreach ($data as $result){
-        if ($result['Block']=="Aktive"){
-            $aktive[]=$result;
-        }
-        else if ($result['Block']=="Junioren"){
-            $junioren[]=$result;
-        }
-        else if ($result['Block']=="Kinderfussball"){
-            $kifu[]=$result;
-        }
-    }
-
     // smarty
     $smarty = cSmartyFrontend::getInstance();
-    $smarty->assign('aktive', $aktive);
-    $smarty->assign('junioren', $junioren);
-    $smarty->assign('kifu', $kifu);
+    $smarty->assign('data', $data);
     $smarty->assign('active', $moduleActive);
     $smarty->display('default.html');
 }
