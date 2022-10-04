@@ -1,13 +1,16 @@
 {
   "name": "cntnd_spreadsheet",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Spreadsheet",
   "devDependencies": {
     "del": "^5.1.0",
     "gulp": "^4.0.2",
+    "gulp-cli": "^2.3.0",
     "gulp-file": "^0.4.0",
     "gulp-minifier": "^2.0.0",
-    "gulp-zip": "^5.0.1"
+    "gulp-sass": "^5.1.0",
+    "gulp-zip": "^5.0.1",
+    "sass": "^1.55.0"
   },
   "repository": {
     "type": "git",
@@ -18,8 +21,5 @@
   "bugs": {
     "url": "https://github.com/cntnd/spreadsheet/issues"
   },
-  "homepage": "https://github.com/cntnd/spreadsheet#readme",
-  "dependencies": {
-    "gulp-sass": "^4.1.0"
-  }
+  "homepage": "https://github.com/cntnd/spreadsheet#readme"
 }
